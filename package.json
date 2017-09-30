@@ -1,0 +1,16 @@
+{
+  "name": "@mralexandernickel/frontend.subjects",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "lint": "node_modules/.bin/tslint -c tslint.json --type-check --project tsconfig.json '**/*.ts' --exclude '**/node_modules/**'"
+  },
+  "devDependencies": {
+    "tslint": "^5.7.0",
+    "typescript": "^2.5.3"
+  },
+  "dependencies": {
+    "rxjs": "^5.4.3"
+  }
+}
