@@ -8,7 +8,7 @@ export interface IBreakpoints {
   xl: number;
 }
 
-export type ScreenSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export type Screensize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export const DefaultBreakpoints: IBreakpoints = {
   xs: 0,
@@ -31,7 +31,7 @@ export const DefaultBreakpoints: IBreakpoints = {
  *
  * ```typescript
  * import {
- *   ScreenSizeDetection,
+ *   ScreenSizeDetectionSubject,
  *   IBreakpoints
  * } from '@mralexandernickel/frontend-subjects/screensize.detection/screensize.detection';
  *
@@ -50,24 +50,24 @@ export const DefaultBreakpoints: IBreakpoints = {
  * and will be informed whenever the screen passes one of your breakpoints.
  *
  * ```typescript
- * import ScreenSizeDetectionInstance from 'ScreenSizeDetectionInstance';
+ * import ScreenSizeDetection from 'ScreenSizeDetection';
  *
- * ScreenSizeDetectionInstance.get().subscribe(screensize => {
+ * ScreenSizeDetection.get().subscribe(screensize => {
  *   console.log(`Screensize is now ${screensize}`);
  * });
  * ```
  */
-export class ScreenSizeDetection {
+export class ScreensizeDetectionSubject {
 
   /**
    * The subscribable BehaviorSubject
    */
-  private subject: BehaviorSubject<ScreenSize>;
+  private subject: BehaviorSubject<Screensize>;
 
   /**
    * The current screensize
    */
-  public screensize: ScreenSize;
+  public screensize: Screensize;
 
   /**
    * @constructor
@@ -87,7 +87,7 @@ export class ScreenSizeDetection {
    * Getter for the subscribable BehaviorSubject
    * @return {BehaviorSubject}
    */
-  public get(): BehaviorSubject<ScreenSize> {
+  public get(): BehaviorSubject<Screensize> {
     return this.subject;
   }
 
@@ -95,9 +95,9 @@ export class ScreenSizeDetection {
    * Calculates the matching screensize depending on window.innerWidth
    * @return {ScreenSize} the currently active ScreenSize defined in Breakpoints
    */
-  public calculate(): ScreenSize {
+  public calculate(): Screensize {
     let deviceWidth = this.mocksize || window.innerWidth;
-    let sizes = Object.keys(this.breakpoints) as Array<ScreenSize>;
+    let sizes = Object.keys(this.breakpoints) as Array<Screensize>;
     for (let i = 0; i < sizes.length; i++) {
       if (i === sizes.length - 1) {
         return sizes[i];
