@@ -10,10 +10,12 @@
   <main style="height:3000px;background:#ccc;">Scroll Content</main>
   <script src="dist/frontend.subjects.js"></script>
   <script>
-    const ScreensizeDetection = new ScreensizeDetectionSubject();
-    ScreensizeDetection.get().subscribe(screensize => {console.log(screensize)});
+    const ScreensizeDetection = new FrontendSubjects.ScreensizeDetectionSubject();
+    ScreensizeDetection.get().subscribe(screensize => {
+      console.log(screensize);
+    });
 
-    const ScrollDirection = new ScrollDirectionSubject();
+    const ScrollDirection = new FrontendSubjects.ScrollDirectionSubject();
     ScrollDirection.get().subscribe(scrollDirection => {
       if (scrollDirection) {
         console.log(scrollDirection);
