@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@mralexandernickel/flex-attributes@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@mralexandernickel/flex-attributes/-/flex-attributes-0.5.1.tgz#760c676a58bd8c27afccdbe540e73cb6e94d48aa"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

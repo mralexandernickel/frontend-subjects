@@ -5,9 +5,10 @@
   "license": "MIT",
   "scripts": {
     "lint": "node_modules/.bin/tslint -c tslint.json --type-check --project tsconfig.json '**/*.ts' --exclude '**/node_modules/**'",
-    "build": "yarn lint && node_modules/.bin/webpack -p"
+    "build": "yarn lint && node_modules/.bin/webpack"
   },
   "devDependencies": {
+    "@mralexandernickel/flex-attributes": "^0.5.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
     "typescript": "^2.5.3",

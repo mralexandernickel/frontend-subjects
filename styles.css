@@ -1,0 +1,97 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+html body {
+  min-height: 100%;
+}
+
+button {
+  border: 0;
+  outline: 0;
+  background: none;
+}
+
+button.icon {
+  padding: 8px;
+}
+
+button.icon svg {
+  height: 32px;
+  width: 32px;
+}
+
+button.action {
+  margin: 12px 0;
+  padding: 0 32px;
+  background: #fff;
+  border-radius: 0;
+  color: #333;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+toolbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 64px;
+  padding: 0 8px;
+  line-height: 64px;
+  transition: all 350ms ease-in-out;
+}
+
+toolbar[position="top"] {
+  top: 0;
+  background: #ffffff;
+  color: #333;
+}
+
+toolbar[position="bottom"] {
+  bottom: 0;
+  background: #333;
+  color: #fff;
+}
+
+body.scroll-fast toolbar[position="top"] {
+  top: -64px;
+}
+
+body.scroll-up toolbar[position="top"],
+body.scroll-down toolbar[position="top"] {
+  background: rgba(255, 255, 255, .7);
+}
+
+body.scroll-down toolbar[position="bottom"],
+body.scroll-up toolbar[position="bottom"],
+body.scroll-fast toolbar[position="bottom"] {
+  bottom: -64px;
+}
+
+body.scroll-none toolbar[position="top"] {
+  top: 0;
+}
+
+body.scroll-none toolbar[position="bottom"] {
+  bottom: 0;
+}
+
+main {
+  background:#ccc;
+  padding: 64px 0;
+}
+
+main article {
+  margin: 16px;
+  height: 300px;
+  line-height: 300px;
+  text-align: center;
+  font-size: 48px;
+  background: #f1f2f1;
+}
