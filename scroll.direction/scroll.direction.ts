@@ -1,8 +1,8 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export const DEBOUNCE_TIME: number = 500;
-export const FAST_SCROLL_DISTANCE: number = 35;
-export const MINIMUM_SCROLL_DISTANCE: number = 50;
+const DEBOUNCE_TIME: number = 500;
+const FAST_SCROLL_DISTANCE: number = 35;
+const MINIMUM_SCROLL_DISTANCE: number = 50;
 
 export const enum ScrollDirections {
   none = 0,
