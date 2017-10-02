@@ -1,18 +1,23 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-export const SCROLL_DIRECTION_UP = 'up';
-export const SCROLL_DIRECTION_DOWN = 'down';
-export const SCROLL_DIRECTION_NONE = 'none';
-
-export const SCROLL_SPEED_REGULAR = 'regular';
-export const SCROLL_SPEED_FAST = 'fast';
-
-export const DEBOUNCE_TIME: number = 750;
+export const DEBOUNCE_TIME: number = 500;
 export const FAST_SCROLL_DISTANCE: number = 35;
 export const MINIMUM_SCROLL_DISTANCE: number = 50;
 
-export type ScrollDirection = 'up' | 'down' | 'none';
-export type ScrollSpeed = 'regular' | 'fast';
+export const enum ScrollDirections {
+  none = 0,
+  up = 1,
+  down = 2
+}
+
+export const enum ScrollSpeeds {
+  slow = 1,
+  regular = 2,
+  fast = 3
+}
+
+export type ScrollDirection = ScrollDirections.up | ScrollDirections.down | ScrollDirections.none;
+export type ScrollSpeed = ScrollSpeeds.regular | ScrollSpeeds.fast;
 
 export interface IScrollInformation {
   direction: ScrollDirection;
@@ -56,8 +61,8 @@ export class ScrollDirectionSubject {
    * Initial scroll information
    */
   private scrollInformation: IScrollInformation = {
-    direction: SCROLL_DIRECTION_NONE,
-    speed: SCROLL_SPEED_REGULAR
+    direction: ScrollDirections.none,
+    speed: ScrollSpeeds.regular
   };
 
   /**
@@ -87,8 +92,8 @@ export class ScrollDirectionSubject {
   private detectStop(): void {
     clearTimeout(this.timer);
     this.timer = setTimeout(() => {
-      this.scrollInformation.direction = SCROLL_DIRECTION_NONE;
-      this.scrollInformation.speed = SCROLL_SPEED_REGULAR;
+      this.scrollInformation.direction = ScrollDirections.none;
+      this.scrollInformation.speed = ScrollSpeeds.regular;
       this.subject.next(this.scrollInformation);
     }, DEBOUNCE_TIME);
   }
@@ -98,18 +103,18 @@ export class ScrollDirectionSubject {
    * @param scrollTop current scrollTop
    */
   private detectDirection(scrollTop: number): void {
-    let scrollDirection;
+    let scrollDirection: ScrollDirection;
     if (scrollTop > this.lastScrollTop) {
-      scrollDirection = SCROLL_DIRECTION_DOWN;
+      scrollDirection = ScrollDirections.down;
     } else if (scrollTop < this.lastScrollTop) {
-      scrollDirection = SCROLL_DIRECTION_UP;
+      scrollDirection = ScrollDirections.up;
     } else {
-      scrollDirection = SCROLL_DIRECTION_NONE;
+      scrollDirection = ScrollDirections.none;
     }
     if (this.scrollInformation.direction !== scrollDirection) {
-      this.scrollInformation.speed = SCROLL_SPEED_REGULAR;
-      // this.scrollInformation.direction = SCROLL_DIRECTION_NONE;
-      this.scrollInformation.direction = scrollDirection as ScrollDirection;
+      this.scrollInformation.speed = ScrollSpeeds.regular;
+      // this.scrollInformation.direction = ScrollDirections.none;
+      this.scrollInformation.direction = scrollDirection;
       this.subject.next(this.scrollInformation);
     }
   }
@@ -120,15 +125,15 @@ export class ScrollDirectionSubject {
    */
   private detectSpeed(scrollTop: number): void {
     const scrollTopDifference = Math.abs(scrollTop - this.lastScrollTop);
-    let scrollSpeed = SCROLL_SPEED_REGULAR;
+    let scrollSpeed: ScrollSpeed = ScrollSpeeds.regular;
     if (scrollTopDifference >= FAST_SCROLL_DISTANCE) {
-      scrollSpeed = SCROLL_SPEED_FAST;
+      scrollSpeed = ScrollSpeeds.fast;
     }
     if (
-      this.scrollInformation.speed !== SCROLL_SPEED_FAST
+      this.scrollInformation.speed !== ScrollSpeeds.fast
       && this.scrollInformation.speed !== scrollSpeed
     ) {
-      this.scrollInformation.speed = scrollSpeed as ScrollSpeed;
+      this.scrollInformation.speed = scrollSpeed;
       this.subject.next(this.scrollInformation);
     }
   }
@@ -163,8 +168,8 @@ export class ScrollDirectionSubject {
       || ScrollDirectionSubject.scrolledToBottom(scrollTop)
     ) {
       this.scrollInformation = {
-        direction: SCROLL_DIRECTION_NONE,
-        speed: SCROLL_SPEED_REGULAR
+        direction: ScrollDirections.none,
+        speed: ScrollSpeeds.regular
       };
       this.subject.next(this.scrollInformation);
     } else {

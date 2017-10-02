@@ -46,7 +46,7 @@
       </button>
       <button class="icon">
         <svg viewBox="0 0 24 24">
-          <path fill="#333333" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+          <path fill="#000000" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
         </svg>
       </button>
     </nav>
@@ -100,7 +100,7 @@
     const ScrollDirection = new FrontendSubjects.ScrollDirectionSubject();
     ScrollDirection.get().subscribe(scrollInformation => {
       if (scrollInformation) {
-        document.body.className = 'scroll-' + scrollInformation.direction + ' scroll-' + scrollInformation.speed;
+        document.body.className = 'scroll-direction-' + scrollInformation.direction + ' scroll-speed-' + scrollInformation.speed;
       }
     });
   </script>

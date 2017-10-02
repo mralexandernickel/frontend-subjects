@@ -90,26 +90,26 @@ toolbar[position="bottom"] {
   color: var(--color-white);
 }
 
-body.scroll-fast toolbar[position="top"] {
+body.scroll-speed-3 toolbar[position="top"] {
   top: calc(var(--toolbar-height) * -1);
 }
 
-body.scroll-up toolbar[position="top"],
-body.scroll-down toolbar[position="top"] {
+body.scroll-direction-1 toolbar[position="top"],
+body.scroll-direction-2 toolbar[position="top"] {
   background: var(--color-white-opaque);
 }
 
-body.scroll-down toolbar[position="bottom"],
-body.scroll-up toolbar[position="bottom"],
-body.scroll-fast toolbar[position="bottom"] {
+body.scroll-direction-2 toolbar[position="bottom"],
+body.scroll-direction-1 toolbar[position="bottom"],
+body.scroll-speed-3 toolbar[position="bottom"] {
   bottom: calc(var(--toolbar-height) * -1);
 }
 
-body.scroll-none toolbar[position="top"] {
+body.scroll-direction-0 toolbar[position="top"] {
   top: 0;
 }
 
-body.scroll-none toolbar[position="bottom"] {
+body.scroll-direction-0 toolbar[position="bottom"] {
   bottom: 0;
 }
 
