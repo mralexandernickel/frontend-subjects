@@ -94,7 +94,7 @@
   <script>
     const ScreensizeDetection = new FrontendSubjects.ScreensizeDetectionSubject();
     ScreensizeDetection.get().subscribe(screensize => {
-      console.log(screensize);
+      if (screensize) console.log(screensize);
     });
 
     const ScrollDirection = new FrontendSubjects.ScrollDirectionSubject();

@@ -1,14 +1,10 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 
 /**
  * EventSubject
  * ============
  */
-export class EventSubject {
-  /**
-   * The subscribable BehaviorSubject
-   */
-  private subject: BehaviorSubject<boolean>;
+export class EventSubject extends BehaviorSubjectable {
 
   /**
    * @constructor
@@ -16,16 +12,8 @@ export class EventSubject {
   constructor(
     type: string
   ) {
-    this.subject = new BehaviorSubject(false);
+    super();
     this.addEventListener(type);
-  }
-
-  /**
-   * Getter for the subscribable BehaviorSubject
-   * @return {BehaviorSubject}
-   */
-  public get(): BehaviorSubject<any> {
-    return this.subject;
   }
 
   /**

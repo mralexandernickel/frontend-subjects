@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 import ResizeSubject from '../event/resize.subject';
 
 export interface IBreakpoints {
@@ -58,13 +58,7 @@ export const DefaultBreakpoints: IBreakpoints = {
  * });
  * ```
  */
-export class ScreensizeDetectionSubject {
-
-  /**
-   * The subscribable BehaviorSubject
-   */
-  private subject: BehaviorSubject<Screensize>;
-
+export class ScreensizeDetectionSubject extends BehaviorSubjectable {
   /**
    * The current screensize
    */
@@ -79,17 +73,9 @@ export class ScreensizeDetectionSubject {
     public breakpoints: IBreakpoints = DefaultBreakpoints,
     public mocksize?: number
   ) {
+    super();
     this.screensize = this.calculate();
-    this.subject = new BehaviorSubject(this.screensize);
     ResizeSubject.get().subscribe(this.resizeHandler.bind(this));
-  }
-
-  /**
-   * Getter for the subscribable BehaviorSubject
-   * @return {BehaviorSubject}
-   */
-  public get(): BehaviorSubject<Screensize> {
-    return this.subject;
   }
 
   /**

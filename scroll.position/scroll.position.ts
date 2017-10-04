@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 import ScrollSubject from '../event/scroll.subject';
 
 /**
@@ -22,27 +22,13 @@ import ScrollSubject from '../event/scroll.subject';
  * });
  * ```
  */
-export class ScrollPositionSubject {
-
-  /**
-   * The subscribable BehaviorSubject
-   */
-  public subject: BehaviorSubject<number>;
-
+export class ScrollPositionSubject extends BehaviorSubjectable {
   /**
    * @constructor
    */
   constructor() {
-    this.subject = new BehaviorSubject(0);
+    super();
     ScrollSubject.get().subscribe(this.scrollHandler.bind(this));
-  }
-
-  /**
-   * Getter for the subscribable BehaviorSubject
-   * @return {BehaviorSubject}
-   */
-  public get(): BehaviorSubject<number> {
-    return this.subject;
   }
 
   /**

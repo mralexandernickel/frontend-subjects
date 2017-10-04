@@ -1,4 +1,4 @@
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 import ScrollSubject from '../event/scroll.subject';
 
 const DEBOUNCE_TIME: number = 500;
@@ -46,13 +46,7 @@ export interface IScrollInformation {
  * });
  * ```
  */
-export class ScrollDirectionSubject {
-
-  /**
-   * Subscribable BehaviorSubject
-   */
-  private subject: BehaviorSubject<IScrollInformation>;
-
+export class ScrollDirectionSubject extends BehaviorSubjectable {
   /**
    * SetTimeout handle
    */
@@ -75,16 +69,8 @@ export class ScrollDirectionSubject {
    * @constructor
    */
   constructor() {
-    this.subject = new BehaviorSubject(null);
+    super();
     ScrollSubject.get().subscribe(this.scrollHandler.bind(this));
-  }
-
-  /**
-   * Getter for the subscribable BehaviorSubject
-   * @return {BehaviorSubject}
-   */
-  public get(): BehaviorSubject<IScrollInformation> {
-    return this.subject;
   }
 
   /**
@@ -158,21 +144,34 @@ export class ScrollDirectionSubject {
   }
 
   /**
+   * Check if one boundary is reached
+   * @param scrollTop current scrollTop position
+   */
+  public static boundaryReached(scrollTop: number): boolean {
+    return ScrollDirectionSubject.scrolledToTop(scrollTop)
+      || ScrollDirectionSubject.scrolledToBottom(scrollTop);
+  }
+
+  /**
+   * Reset scroll information
+   */
+  private reset(): void {
+    this.scrollInformation = {
+      direction: ScrollDirections.none,
+      speed: ScrollSpeeds.regular
+    };
+    this.subject.next(this.scrollInformation);
+  }
+
+  /**
    * Callback function for the onscroll event-listener
    * @return {void}
    */
   private scrollHandler(): void {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    if (
-      ScrollDirectionSubject.scrolledToTop(scrollTop)
-      || ScrollDirectionSubject.scrolledToBottom(scrollTop)
-    ) {
-      this.scrollInformation = {
-        direction: ScrollDirections.none,
-        speed: ScrollSpeeds.regular
-      };
-      this.subject.next(this.scrollInformation);
+    if (ScrollDirectionSubject.boundaryReached(scrollTop)) {
+      this.reset();
     } else {
       this.detectStop();
       this.detectDirection(scrollTop);
