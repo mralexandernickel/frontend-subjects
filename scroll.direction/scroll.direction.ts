@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import ScrollSubject from '../event/scroll.subject';
 
 const DEBOUNCE_TIME: number = 500;
 const FAST_SCROLL_DISTANCE: number = 35;
@@ -75,7 +76,7 @@ export class ScrollDirectionSubject {
    */
   constructor() {
     this.subject = new BehaviorSubject(null);
-    this.addEventListeners();
+    ScrollSubject.get().subscribe(this.scrollHandler.bind(this));
   }
 
   /**
@@ -179,17 +180,5 @@ export class ScrollDirectionSubject {
     }
 
     this.lastScrollTop = scrollTop;
-  }
-
-  /**
-   * Add the EventListener on 'scroll'
-   * @return {void}
-   */
-  private addEventListeners(): void {
-    let animationFrame;
-    window.addEventListener('scroll', () => {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(this.scrollHandler.bind(this));
-    });
   }
 }

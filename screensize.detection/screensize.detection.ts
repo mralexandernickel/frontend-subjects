@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import ResizeSubject from '../event/resize.subject';
 
 export interface IBreakpoints {
   xs: number;
@@ -80,7 +81,7 @@ export class ScreensizeDetectionSubject {
   ) {
     this.screensize = this.calculate();
     this.subject = new BehaviorSubject(this.screensize);
-    this.addEventListeners();
+    ResizeSubject.get().subscribe(this.resizeHandler.bind(this));
   }
 
   /**
@@ -120,17 +121,5 @@ export class ScreensizeDetectionSubject {
       this.screensize = screensize;
       this.subject.next(this.screensize);
     }
-  }
-
-  /**
-   * Adding the EventListener to 'resize'
-   * @return {void}
-   */
-  private addEventListeners(): void {
-    let animationFrame;
-    window.addEventListener('resize', () => {
-      cancelAnimationFrame(animationFrame);
-      animationFrame = requestAnimationFrame(this.resizeHandler.bind(this));
-    });
   }
 }
