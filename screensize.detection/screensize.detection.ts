@@ -32,9 +32,9 @@ export const DefaultBreakpoints: IBreakpoints = {
  *
  * ```typescript
  * import {
- *   ScreenSizeDetectionSubject,
+ *   ScreensizeDetectionSubject,
  *   IBreakpoints
- * } from '@mralexandernickel/frontend-subjects/screensize.detection/screensize.detection';
+ * } from '@mralexandernickel/frontend.subjects/screensize.detection/screensize.detection';
  *
  * export const Breakpoints: IBreakpoints = {
  *   xs: 0,
@@ -44,16 +44,16 @@ export const DefaultBreakpoints: IBreakpoints = {
  *   xl: 1200
  * }
  *
- * export default new ScreenSizeDetection(Breakpoints);
+ * export default new ScreensizeDetectionSubject(Breakpoints);
  * ```
  *
  * Now you can import and use this singleton-instance in any module you want,
  * and will be informed whenever the screen passes one of your breakpoints.
  *
  * ```typescript
- * import ScreenSizeDetection from 'ScreenSizeDetection';
+ * import ScreensizeDetection from 'ScreensizeDetection';
  *
- * ScreenSizeDetection.get().subscribe(screensize => {
+ * ScreensizeDetection.get().subscribe(screensize => {
  *   console.log(`Screensize is now ${screensize}`);
  * });
  * ```
@@ -63,6 +63,11 @@ export class ScreensizeDetectionSubject extends BehaviorSubjectable {
    * The current screensize
    */
   public screensize: Screensize;
+
+  /**
+   * Determines if we are publishing for the first time
+   */
+  private subjectFirst: boolean = true;
 
   /**
    * @constructor
@@ -103,7 +108,8 @@ export class ScreensizeDetectionSubject extends BehaviorSubjectable {
    */
   public resizeHandler(): void {
     let screensize = this.calculate();
-    if (screensize !== this.screensize) {
+    if (this.subjectFirst || screensize !== this.screensize) {
+      this.subjectFirst = false;
       this.screensize = screensize;
       this.subject.next(this.screensize);
     }

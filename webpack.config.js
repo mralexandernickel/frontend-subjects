@@ -3,7 +3,7 @@ module.exports = {
     module: './index.ts'
   },
   output: {
-    filename: './dist/frontend.subjects.js',
+    filename: './bundles/frontend.subjects.js',
     library: 'FrontendSubjects',
     libraryTarget: 'umd',
     umdNamedDefine: true
