@@ -17,12 +17,6 @@ import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 export class ConnectionSpeedSubject extends BehaviorSubjectable {
 
   /**
-   * The interval to recheck the connectionSpeed.
-   * If this is 0 we will never do the interval.
-   */
-  private interval: number;
-
-  /**
    * @constructor
    * @param file URL to the check-file
    * @param filesize Size of the check-file
@@ -34,7 +28,6 @@ export class ConnectionSpeedSubject extends BehaviorSubjectable {
     interval: number = 0
   ) {
     super();
-    this.interval = interval;
     if (interval) {
       setInterval(() => {
         this.detectConnection(fileURL, fileSize);
