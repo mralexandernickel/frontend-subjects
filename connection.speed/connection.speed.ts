@@ -1,5 +1,11 @@
 import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 
+export type ConnectionSpeed = {
+  Bps: number;
+  Kbps: number;
+  Mbps: number;
+};
+
 /**
  * ConnectionSpeedSubject
  * ======================
@@ -54,7 +60,7 @@ export class ConnectionSpeedSubject extends BehaviorSubjectable {
       const speedBps: number = bitsLoaded / duration;
       const speedKbps: number = speedBps / 1024;
       const speedMbps: number = speedKbps / 1024;
-      const speed = {
+      const speed: ConnectionSpeed = {
         Bps: speedBps,
         Kbps: speedKbps,
         Mbps: speedMbps
