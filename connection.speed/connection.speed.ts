@@ -1,8 +1,24 @@
 import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 
+export type ConnectionSpeed = {
+  Bps: number;
+  Kbps: number;
+  Mbps: number;
+};
+
 /**
  * ConnectionSpeedSubject
  * ======================
+ *
+ * ```typescript
+ * import { ConnectionSpeedSubject } from '@mralexandernickel/frontend.subjects/dist/connection.speed/connection.speed';
+ *
+ * const connectionSpeed = new ConnectionSpeedSubject('http://domain.tld/path/to/file.jpg', 123456, 2000);
+ * connectionSpeed.get().subscribe(speed => {
+ *   if (speed) {
+ *     console.log('Connection-SPeed is now:', speed);
+ *   }
+ * });
  */
 export class ConnectionSpeedSubject extends BehaviorSubjectable {
 
@@ -10,10 +26,21 @@ export class ConnectionSpeedSubject extends BehaviorSubjectable {
    * @constructor
    * @param file URL to the check-file
    * @param filesize Size of the check-file
+   * @param interval The duration of the interval to re-check the connection-speed. If this is 0 we will check only once.
    */
-  constructor(fileURL: string, fileSize: number) {
+  constructor(
+    fileURL: string,
+    fileSize: number,
+    interval: number = 0
+  ) {
     super();
-    this.detectConnection(fileURL, fileSize);
+    if (interval) {
+      setInterval(() => {
+        this.detectConnection(fileURL, fileSize);
+      }, interval);
+    } else {
+      this.detectConnection(fileURL, fileSize);
+    }
   }
 
   /**
@@ -33,7 +60,7 @@ export class ConnectionSpeedSubject extends BehaviorSubjectable {
       const speedBps: number = bitsLoaded / duration;
       const speedKbps: number = speedBps / 1024;
       const speedMbps: number = speedKbps / 1024;
-      const speed = {
+      const speed: ConnectionSpeed = {
         Bps: speedBps,
         Kbps: speedKbps,
         Mbps: speedMbps

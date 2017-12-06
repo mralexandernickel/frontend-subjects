@@ -1,11 +1,11 @@
 {
   "name": "@mralexandernickel/frontend.subjects",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
     "lint": "node_modules/.bin/tslint -c tslint.json --type-check --project tsconfig.json '**/*.ts' --exclude '**/node_modules/**'",
-    "build": "yarn lint && node_modules/.bin/webpack -p",
+    "build": "rm -r dist && yarn lint && node_modules/.bin/webpack -p && tsc",
     "deploy": "cd .. && tar czf frontend-subjects.tar.gz frontend-subjects && scp frontend-subjects.tar.gz aventon:/var/www/ && ssh aventon tar xzf /var/www/frontend-subjects.tar.gz -C /var/www"
   },
   "devDependencies": {
