@@ -1,6 +1,6 @@
 {
   "name": "@mralexandernickel/frontend.subjects",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
