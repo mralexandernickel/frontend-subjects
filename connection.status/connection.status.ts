@@ -32,7 +32,7 @@ export class ConnectionStatusSubject {
    * @constructor
    */
   constructor() {
-    const status = (navigator.onLine) ? ConnectionStatus.offline : ConnectionStatus.online;
+    const status = navigator.onLine ? ConnectionStatus.online : ConnectionStatus.offline;
     this.subject = new BehaviorSubject(status);
     this.bindEvents();
   }
