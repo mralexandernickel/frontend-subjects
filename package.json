@@ -1,6 +1,6 @@
 {
   "name": "@mralexandernickel/frontend.subjects",
-  "version": "0.6.0",
+  "version": "0.7.1",
   "main": "index.ts",
   "license": "MIT",
   "scripts": {
@@ -17,6 +17,6 @@
     "webpack": "^3.6.0"
   },
   "dependencies": {
-    "rxjs": "^5.4.3"
+    "rxjs": "^6.2.0"
   }
 }

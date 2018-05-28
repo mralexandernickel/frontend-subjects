@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    module: './index.ts'
+    module: './src/index.ts'
   },
   output: {
     filename: './bundles/frontend.subjects.js',
