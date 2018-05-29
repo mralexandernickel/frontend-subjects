@@ -10,7 +10,7 @@ import ScrollSubject from '../event/scroll.subject';
  * ```typescript
  * import {
  *   ScrollPositionSubject
- * } from '@mralexandernickel/frontend-subjects/scroll.position/scroll.position';
+ * } from '@mralexandernickel/frontend-subjects/dist/scroll.position/scroll.position';
  *
  * export default new ScrollPositionSubject();
  * ```

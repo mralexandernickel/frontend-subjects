@@ -34,7 +34,7 @@ export const DefaultBreakpoints: IBreakpoints = {
  * import {
  *   ScreensizeDetectionSubject,
  *   IBreakpoints
- * } from '@mralexandernickel/frontend.subjects/screensize.detection/screensize.detection';
+ * } from '@mralexandernickel/frontend.subjects/dist/screensize.detection/screensize.detection';
  *
  * export const Breakpoints: IBreakpoints = {
  *   xs: 0,

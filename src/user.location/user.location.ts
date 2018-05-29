@@ -10,7 +10,7 @@ import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
  * ```typescript
  * import {
  *   UserLocationSubject
- * } from '@mralexandernickel/frontend-subjects/user.location/user.location';
+ * } from '@mralexandernickel/frontend-subjects/dist/user.location/user.location';
  *
  * export default new UserLocationSubject(
  *   YOUR_GOOGLE_MAPS_API_KEY,

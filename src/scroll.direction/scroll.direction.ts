@@ -34,7 +34,7 @@ export interface IScrollInformation {
  * ```typescript
  * import {
  *   ScrollDirectionSubject
- * } from '@mralexandernickel/frontend-subjects/scroll.direction/scroll.direction';
+ * } from '@mralexandernickel/frontend-subjects/dist/scroll.direction/scroll.direction';
  *
  * export default new ScrollDirectionSubject();
  * ```
