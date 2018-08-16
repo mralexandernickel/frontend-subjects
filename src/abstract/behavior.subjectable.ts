@@ -13,8 +13,8 @@ export abstract class BehaviorSubjectable {
   /**
    * @constructor
    */
-  constructor() {
-    this.subject = new BehaviorSubject(null);
+  constructor(initialValue: any = null) {
+    this.subject = new BehaviorSubject(initialValue);
   }
 
   /**

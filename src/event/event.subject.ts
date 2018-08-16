@@ -17,7 +17,7 @@ export class EventSubject extends BehaviorSubjectable {
   }
 
   /**
-   * Adding the EventListener to 'resize'
+   * Adding the EventListener to the passed event-name
    * @return {void}
    */
   private addEventListener(

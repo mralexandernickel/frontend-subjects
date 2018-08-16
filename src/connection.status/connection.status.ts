@@ -1,4 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 
 export enum ConnectionStatus {
   offline,
@@ -21,7 +22,7 @@ export enum ConnectionStatus {
  *   }
  * });
  */
-export class ConnectionStatusSubject {
+export class ConnectionStatusSubject extends BehaviorSubjectable {
 
   /**
    * The subscribable BehaviorSubject
@@ -33,16 +34,8 @@ export class ConnectionStatusSubject {
    */
   constructor() {
     const status = navigator.onLine ? ConnectionStatus.online : ConnectionStatus.offline;
-    this.subject = new BehaviorSubject(status);
+    super(status);
     this.bindEvents();
-  }
-
-  /**
-   * Getter for the subscribable BehaviorSubject
-   * @return {BehaviorSubject}
-   */
-  public get(): BehaviorSubject<ConnectionStatus> {
-    return this.subject;
   }
 
   /**
