@@ -24,8 +24,8 @@ export class ConnectionSpeedSubject extends BehaviorSubjectable {
 
   /**
    * @constructor
-   * @param file URL to the check-file
-   * @param filesize Size of the check-file
+   * @param fileURL URL to the check-file
+   * @param fileSize Size of the check-file
    * @param interval The duration of the interval to re-check the connection-speed. If this is 0 we will check only once.
    */
   constructor(
