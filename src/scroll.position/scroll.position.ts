@@ -1,6 +1,6 @@
 import { BehaviorSubjectable } from '../abstract/behavior.subjectable';
 import ScrollSubject from '../event/scroll.subject';
-import { BehaviorSubject } from '../../node_modules/rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * ScrollPositionSubject
