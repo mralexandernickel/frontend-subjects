@@ -13,7 +13,7 @@
     "@mralexandernickel/flex-attributes": "^0.5.1",
     "ts-loader": "^2.3.7",
     "tslint": "^5.7.0",
-    "typescript": "^2.5.3",
+    "typescript": "^3.0.1",
     "webpack": "^3.6.0"
   },
   "dependencies": {
