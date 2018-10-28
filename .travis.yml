@@ -6,10 +6,13 @@ cache:
   yarn: true
   directories:
     - "./node_modules"
+addons:
+  ssh_known_hosts: mralexandernickel.com
 before_script:
   - yarn build frontend-subjects
   - yarn build --prod --base-href=/frontend-subjects/
 script:
+  - yarn lint
   - yarn test frontend-subjects --watch=false --code-coverage
 after_success:
   - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
