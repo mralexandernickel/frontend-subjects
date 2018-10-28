@@ -18,11 +18,11 @@ after_success:
   - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
 before_deploy:
   - openssl aes-256-cbc -K $encrypted_95320be81f38_key -iv $encrypted_95320be81f38_iv
-    -in id_ed25519.enc -out /tmp/id_ed25519 -d
+    -in $TRAVIS_BUILD_DIR/id_ed25519.enc -out /tmp/id_ed25519 -d
   - eval "$(ssh-agent -s)"
   - chmod 600 /tmp/id_ed25519
   - ssh-add /tmp/id_ed25519
-  - cd dist/frontend-subjects
+  - cd $TRAVIS_BUILD_DIR/dist/frontend-subjects
 deploy:
   - provider: npm
     email: mr.alexander.nickel@gmail.com
