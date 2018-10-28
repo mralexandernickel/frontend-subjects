@@ -25,7 +25,7 @@ before_deploy:
 deploy:
   provider: script
   skip_cleanup: true
-  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/frontend-subjects-demo travis@mralexandernickel.com:/var/www/frontend-subjects-demo
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/dist/frontend-subjects-demo/* travis@mralexandernickel.com:/var/www/frontend-subjects-demo
   on:
     branch: master
 # deploy:
