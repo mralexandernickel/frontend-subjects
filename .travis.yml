@@ -10,7 +10,7 @@ addons:
   ssh_known_hosts: mralexandernickel.com
 before_script:
   - yarn build frontend-subjects
-  - yarn build --prod --base-href=/frontend-subjects/
+  - yarn build --prod
 script:
   - yarn lint
   - yarn test frontend-subjects --watch=false --code-coverage
