@@ -1,0 +1,23 @@
+language: node_js
+dist: trusty
+node_js:
+  - '10.9.0'
+cache:
+  yarn: true
+  directories:
+     - ./node_modules
+before_script:
+  - yarn build frontend-subjects
+  - yarn build --prod --base-href=/frontend-subjects/
+script:
+  - yarn test frontend-subjects --watch=false --code-coverage
+after_success:
+  - cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  local-dir: dist/frontend-subjects-demo
+  on:
+    branch: master
